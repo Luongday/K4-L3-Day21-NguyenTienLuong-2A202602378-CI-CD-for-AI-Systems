@@ -46,7 +46,7 @@ Chỉ khoảng 24,8% mẫu thuộc lớp thu nhập > 50K, nên một mô hình 
 
 | | f1_score | accuracy |
 |---|---|---|
-| Bước 2 (chỉ `train_batch1`) | ___ | ___ |
+| Bước 2 (chỉ `train_batch1`) | 0,7290 | 0,8840 |
 | Bước 3 (thêm `train_batch2`) | ___ | ___ |
 
 **Nhận xét:** ___
