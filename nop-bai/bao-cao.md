@@ -2,11 +2,11 @@
 
 | | |
 |---|---|
-| Họ và tên | Nguyễn Tiến Lương |
+| Họ và tên | Nguyễn Tiến Lượng |
 | MSSV | 2A202602378 |
 | Lớp / Khóa | K4 |
 | Repo GitHub | https://github.com/Luongday/K4-L3-Day21-NguyenTienLuong-2A202602378-CI-CD-for-AI-Systems |
-| Ngày nộp | ___ |
+| Ngày nộp | 07/10/2026 |
 
 ---
 
@@ -38,7 +38,7 @@ Chỉ khoảng 24,8% mẫu thuộc lớp thu nhập > 50K, nên một mô hình 
 |---|---|---|
 | `pip install` báo `CERTIFICATE_VERIFY_FAILED` | Phần mềm diệt virus chặn HTTPS bằng chứng chỉ riêng mà Python không tin | Ghép CA của phần mềm đó với certifi, truyền qua `PIP_CERT` và `SSL_CERT_FILE`, vẫn giữ xác thực SSL |
 | Test lỗi `ImportError: FallbackAsyncAdaptedQueuePool` | `requirements.txt` không pin SQLAlchemy nên pip lấy 2.1.x, không tương thích mlflow 2.13.0 | Thêm `sqlalchemy<2.1` vào `requirements.txt` (nếu không, job Unit Test trên Actions cũng đỏ) |
-| ___ | ___ | ___ |
+| Secret `STORAGE_CREDENTIALS` làm Train lỗi `JSONDecodeError` | PowerShell 5.1 bỏ dấu `"` khi truyền chuỗi JSON cho `gh --body` | Đặt lại secret bằng cách pipe file qua stdin (`Get-Content -Raw ... \| gh secret set`) |
 
 ---
 
@@ -47,9 +47,9 @@ Chỉ khoảng 24,8% mẫu thuộc lớp thu nhập > 50K, nên một mô hình 
 | | f1_score | accuracy |
 |---|---|---|
 | Bước 2 (chỉ `train_batch1`) | 0,7290 | 0,8840 |
-| Bước 3 (thêm `train_batch2`) | ___ | ___ |
+| Bước 3 (thêm `train_batch2`) | 0,7330 | 0,8820 |
 
-**Nhận xét:** ___
+**Nhận xét:** F1 tăng nhẹ 0,004 còn accuracy giảm 0,002 khi dữ liệu huấn luyện tăng gấp đôi (22.361 → 44.722 mẫu). Chênh lệch này nằm trong nhiễu của holdout chỉ 500 mẫu, vì hai nửa dữ liệu được chia ngẫu nhiên từ cùng một nguồn nên dữ liệu mới không mang thêm thông tin; mô hình đã học gần hết từ nửa đầu. Điều Bước 3 kiểm chứng là quy trình: commit file `.dvc` kích hoạt tự động cả bốn job và VM phục vụ model mới mà không cần thao tác thủ công.
 
 ---
 
