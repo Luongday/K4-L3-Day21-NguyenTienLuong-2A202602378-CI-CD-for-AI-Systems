@@ -76,8 +76,7 @@ jobs:
               for k, v in env.items():
                   if k != "AWS_DEFAULT_REGION":
                       print(f"::add-mask::{v}")
-                  f.write(f"{k}={v}
-")
+                  f.write(f"{k}={v}" + chr(10))
           PYEOF
 
       - name: Pull data with DVC
